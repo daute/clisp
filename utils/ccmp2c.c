@@ -366,7 +366,7 @@ peek_char (BUFFILE_t *infile)
 /* These are the different token types.  */
 enum token_type_t
 {
-  eof,           /* End of file */
+  token_eof,           /* End of file */
   eofcomment,    /* End of file inside comment */
   eol,           /* End of line */
   ident,         /* Identifier */
@@ -447,7 +447,7 @@ nexttoken (BUFFILE_t *infile, tokens_t *tokens,
         switch (c)
           {
           case EOF: /* EOF */
-            token->type = eof;
+            token->type = token_eof;
             goto done;
           case ' ': case '\v': case '\t':
             continue;
@@ -526,7 +526,7 @@ nexttoken (BUFFILE_t *infile, tokens_t *tokens,
                 {
                   for (;;) {
                     token_t *subtoken = nexttoken (infile, tokens, FALSE, TRUE);
-                    if (subtoken->type == eof
+                    if (subtoken->type == token_eof
                         || subtoken->type == eofcomment
                         || subtoken->type == eol)
                       break;
@@ -640,7 +640,7 @@ tokenify (unsigned char *line,
       token_t *next =
         nexttoken (&infile, tokens, *within_comment, within_prep_directive);
 
-      if (next->type == eof)
+      if (next->type == token_eof)
         {
           *within_comment = FALSE;
           break;

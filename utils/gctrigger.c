@@ -502,7 +502,7 @@ static int next_char (void)
    - operator/separator
  Generalized tokens can be expressions, with balanced parentheses. */
 enum token_type {
-  eof,
+  token_eof,
   eol,
   ident,
   number,
@@ -605,7 +605,7 @@ static Token nexttoken (boolean within_prep_directive)
   { int c = next_char();
     switch (c) {
       case EOF:
-        token.type = eof; return token;
+        token.type = token_eof; return token;
       case ' ': case '\v': case '\t':
         /* Ignore whitespace. */
         goto restart;
@@ -650,7 +650,7 @@ static Token nexttoken (boolean within_prep_directive)
           /* Preprocessor directive. Read until end of line or EOF. */
           while (1) {
             Token subtoken = nexttoken(TRUE);
-            if (subtoken.type == eof || subtoken.type == eol)
+            if (subtoken.type == token_eof || subtoken.type == eol)
               break;
             Token_delete(&subtoken);
           }
@@ -773,7 +773,7 @@ static Token next_balanced_token (Token* start_token, uintL open_braces_start)
   while (1) {
     /* Here always  open_braces.count >= open_braces_start . */
     switch (token.type) {
-      case eof:
+      case token_eof:
         if (open_braces.count > open_braces_start) {
           if (open_braces.count <= MAXBRACES)
             fprintf(stderr,"unclosed '%c' in line %lu\n",
@@ -854,7 +854,7 @@ static void convert (void)
         VectorToken_init(&parameter_declaration);
         while (1) {
           token = next_balanced_token(NULL,open_braces.count);
-          if (token.type == eof)
+          if (token.type == token_eof)
             break;
           if (token.type == sep && (token.ch == ',' || token.ch == ')'))
             break;
@@ -877,14 +877,14 @@ static void convert (void)
           }
         }
         VectorToken_delete(&parameter_declaration);
-        if (token.type == eof)
+        if (token.type == token_eof)
           break;
         if (token.ch == ')') {
           handle_closing_token(&token);
           break;
         }
       }
-      if (token.type != eof) {
+      if (token.type != token_eof) {
         token = next_token();
         if (token.type == sep && token.ch == '{') {
           /* Here's the point where we insert the GCTRIGGER statement. */
@@ -921,7 +921,7 @@ static void convert (void)
       /* Continue the loop with the new token (as it might be a semicolon). */
       goto restart;
     }
-    if (token.type == eof)
+    if (token.type == token_eof)
       break;
     Token_delete(&token);
   }
