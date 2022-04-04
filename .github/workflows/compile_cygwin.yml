@@ -20,9 +20,10 @@ jobs:
         uses: actions/checkout@v2
       - name: configure
         run: |
+             cd clisp
              ./configure --config --host=i686-w64-mingw32 --enable-portability --ignore-absence-of-libsigsegv --disable-threads build
 
       - name: compile
         run: |
-             cd build
+             cd clisp/build
              make
