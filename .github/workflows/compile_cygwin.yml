@@ -1,0 +1,27 @@
+# Set up Cygwin. Source: https://github.com/egor-tensin/setup-cygwin
+name: compile_cygwin
+
+on: [push]
+
+jobs:
+  setup_cygwin:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: C:\tools\cygwin\bin\bash.exe --login --norc -eo pipefail -o igncr '{0}'
+        
+    steps:
+      - name: setup_cygwin
+        uses: egor-tensin/setup-cygwin@v3
+        with:
+          platform: x86
+          packages: git mingw64-i686-gcc-core make
+      - name: configure
+        run: |
+             cd clisp
+             ./configure --config --host=i686-w64-mingw32 --enable-portability --ignore-absence-of-libsigsegv --disable-threads build
+
+      - name: compile
+        run: |
+             cd clisp/build
+             make
