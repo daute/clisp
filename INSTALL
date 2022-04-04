@@ -37,7 +37,7 @@ Other:
 
       src/gmalloc.c      a GNU malloc library routine
 
-  modules:           add-on sofware
+  modules:           add-on software
       modules/queens/    sample external module for CLISP for you to explore
 
     base:              normally included in all linking sets
