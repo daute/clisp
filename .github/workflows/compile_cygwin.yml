@@ -16,6 +16,8 @@ jobs:
         with:
           platform: x86
           packages: git mingw64-i686-gcc-core make
+      - name: Checkout_git
+        uses: actions/checkout@v2
       - name: configure
         run: |
              ./configure --config --host=i686-w64-mingw32 --enable-portability --ignore-absence-of-libsigsegv --disable-threads build
