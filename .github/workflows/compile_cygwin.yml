@@ -15,14 +15,15 @@ jobs:
         uses: egor-tensin/setup-cygwin@v3
         with:
           platform: x86
-          packages: git mingw64-i686-gcc-core make
+          packages: git mingw64-i686-gcc-core make git
       - name: Checkout_git
-        uses: actions/checkout@v3
+        run: git clone --depth 1 https://github.com/daute/clisp.git
       - name: configure
         run: |
-             bash ./configure --config --host=i686-w64-mingw32 --enable-portability --ignore-absence-of-libsigsegv --disable-threads build
+             cd clisp
+             ./configure --config --host=i686-w64-mingw32 --enable-portability --ignore-absence-of-libsigsegv --disable-threads build
 
       - name: compile
         run: |
-             cd build
+             cd clisp/build
              make
