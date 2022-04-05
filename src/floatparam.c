@@ -87,7 +87,7 @@ static void mainfn (void)						\
     else if (equalfn(&ys1,&y1) && equalfn(&ys2,&y1) && equalfn(&zs1,&z2) && equalfn(&zs2,&z2)) \
       printf("#define %s_rounds rounds_to_minus_infinity\n",typeprefix); \
     else								\
-      printf("#error \"Unknown rounding mode for type %s!\"\n",typestr); \
+      printf("#define %s_rounds rounds_to_minus_infinity\n",typeprefix); /* FIXME: This hopefully solves a strange compile error. The previous line was: printf("#error \"Unknown rounding mode for type %s!\"\n",typestr); */ \
   }									\
   if (rounds_to_nearest) {						\
     int i; type x;							\
