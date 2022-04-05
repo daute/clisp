@@ -21,7 +21,7 @@ jobs:
       - name: configure
         run: |
              cd clisp
-             ./configure --config --host=i686-w64-mingw32 --enable-portability --ignore-absence-of-libsigsegv --disable-threads build
+             ./configure --config --host=i686-w64-mingw32 --enable-portability --ignore-absence-of-libsigsegv --disable-threads --without-dynamic-modules build
 
       - name: compile
         run: |
