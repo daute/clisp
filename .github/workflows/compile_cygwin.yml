@@ -17,13 +17,12 @@ jobs:
           platform: x86
           packages: git mingw64-i686-gcc-core make
       - name: Checkout_git
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: configure
         run: |
-             cd clisp
-             ./configure --config --host=i686-w64-mingw32 --enable-portability --ignore-absence-of-libsigsegv --disable-threads build
+             bash ./configure --config --host=i686-w64-mingw32 --enable-portability --ignore-absence-of-libsigsegv --disable-threads build
 
       - name: compile
         run: |
-             cd clisp/build
+             cd build
              make
