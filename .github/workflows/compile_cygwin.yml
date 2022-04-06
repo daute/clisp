@@ -38,12 +38,12 @@ jobs:
              make install
       - name: Checkout_git
         run: git clone --depth 1 https://github.com/daute/clisp.git
-      - name: configure
+      - name: Configure_clisp
         run: |
              cd clisp
-             ./configure --config --host=i686-w64-mingw32 --enable-portability --disable-threads --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv
+             ./configure --config --host=i686-w64-mingw32 --enable-portability --disable-threads --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv build
 
-      - name: compile
+      - name: Compile_clisp
         run: |
              cd clisp/build
              make
