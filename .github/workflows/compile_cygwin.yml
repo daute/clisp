@@ -11,11 +11,11 @@ jobs:
         shell: C:\tools\cygwin\bin\bash.exe --login --norc -eo pipefail -o igncr '{0}'
         
     steps:
-      - name: setup_cygwin --output libffcall-2.4.tar.gz
+      - name: setup_cygwin
         uses: egor-tensin/setup-cygwin@v3
         with:
           platform: x86
-          packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ make git curl
+          packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ make curl
       - name: Download_libffcall
         run: curl -O https://ftp.gnu.org/gnu/libffcall/libffcall-2.4.tar.gz
       - name: Extract_libffcall
