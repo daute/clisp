@@ -15,7 +15,7 @@ jobs:
         uses: egor-tensin/setup-cygwin@v3
         with:
           platform: x86
-          packages: git mingw64-i686-gcc-core make git curl
+          packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ make git curl
       - name: Download_libffcall
         run: curl https://ftp.gnu.org/gnu/libffcall/libffcall-2.4.tar.gz --output libffcall-2.4.tar.gz
       - name: Extract_libffcall
