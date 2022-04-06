@@ -23,7 +23,7 @@ jobs:
       - name: Build_libffcall
         run: |
              cd libffcall-2.4
-             ./configure configure --enable-static --enable-shared=no --host=i686-w64-mingw32 --prefix=$HOME/libffcall
+             ./configure configure --enable-static --enable-shared=no  --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=$HOME/libffcall
              make
              make install
       - name: Checkout_git
