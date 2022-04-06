@@ -11,13 +11,13 @@ jobs:
         shell: C:\tools\cygwin\bin\bash.exe --login --norc -eo pipefail -o igncr '{0}'
         
     steps:
-      - name: setup_cygwin
+      - name: setup_cygwin --output libffcall-2.4.tar.gz
         uses: egor-tensin/setup-cygwin@v3
         with:
           platform: x86
           packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ make git curl
       - name: Download_libffcall
-        run: curl https://ftp.gnu.org/gnu/libffcall/libffcall-2.4.tar.gz --output libffcall-2.4.tar.gz
+        run: curl -O https://ftp.gnu.org/gnu/libffcall/libffcall-2.4.tar.gz
       - name: Extract_libffcall
         run: tar xvf libffcall-2.4.tar.gz
       - name: Build_libffcall
@@ -26,12 +26,22 @@ jobs:
              ./configure configure --enable-static --enable-shared=no  --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=$HOME/libffcall
              make
              make install
+      - name: Download_libsigsegv
+        run: curl -O https://ftp.gnu.org/gnu/libsigsegv/libsigsegv-2.14.tar.gz
+      - name: Extract_libffcall
+        run: tar xvf libsigsegv-2.14.tar.gz
+      - name: Build_libsigsegv
+        run: |
+             cd libsigsegv-2.14
+             ./configure configure --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=$HOME/libsigsegv
+             make
+             make install
       - name: Checkout_git
         run: git clone --depth 1 https://github.com/daute/clisp.git
       - name: configure
         run: |
              cd clisp
-             ./configure --config --host=i686-w64-mingw32 --enable-portability --ignore-absence-of-libsigsegv --disable-threads --with-libffcall-prefix=$HOME/libffcall build
+             ./configure --config --host=i686-w64-mingw32 --enable-portability --disable-threads --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv
 
       - name: compile
         run: |
