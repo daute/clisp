@@ -9,7 +9,7 @@ jobs:
     defaults:
       run:
         shell: C:\tools\cygwin\bin\bash.exe --login --norc -eo pipefail -o igncr '{0}'
-        
+
     steps:
       - name: setup_cygwin
         uses: egor-tensin/setup-cygwin@v3
@@ -46,4 +46,10 @@ jobs:
       - name: Compile_clisp
         run: |
              cd clisp/build
-             make
+             make -C src lisp.exe
+
+      - name: Upload_lisp_exe
+        uses: actions/upload-artifact@v3
+        with:
+          name: lisp.exe
+          path: clisp/build/src/lisp.exe
