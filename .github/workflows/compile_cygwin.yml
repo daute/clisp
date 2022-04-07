@@ -46,10 +46,10 @@ jobs:
       - name: Compile_clisp
         run: |
              cd clisp/build
-             make -C src lisp.exe
+             make lisp.exe
 
       - name: Upload_lisp_exe
         uses: actions/upload-artifact@v3
         with:
           name: lisp.exe
-          path: clisp/build/src/lisp.exe
+          path: clisp/build/lisp.exe
