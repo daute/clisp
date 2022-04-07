@@ -3248,7 +3248,7 @@ if [ $TSYS = win32msvc -a "${with_debug}" != no ] ; then
 fi
 
 echol "marc.out : lisp${LEXE}"
-echotab "touch marc.out" # FIXME: That tests seems to loop forever on Cygin, disable it for my crosscompilation procedure. The line was: echotab "${HERE}lisp${LEXE} -marc > marc.out"
+echotab "${HERE}lisp${LEXE} -marc > marc.out"
 echol
 
 CONFIG=cfg${TOS}
