@@ -47,6 +47,7 @@ jobs:
         run: |
              cd clisp/build
              make lisp.exe
+             find .
 
       - name: Upload_lisp_exe
         uses: actions/upload-artifact@v3
