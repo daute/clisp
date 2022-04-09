@@ -52,5 +52,4 @@ jobs:
       - name: Upload_lisp_exe
         uses: actions/upload-artifact@v3
         with:
-          name: lisp.exe
-          path: ./**/lisp.exe
+          path: *
