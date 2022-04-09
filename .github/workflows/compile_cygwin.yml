@@ -49,7 +49,6 @@ jobs:
              make lisp.exe
              find /home/runneradmin/clisp
 
-      - name: Upload_lisp_exe
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
         with:
-          path: /home/runneradmin/clisp/build/src/lisp.exe
+          path: ~/clisp/build/
