@@ -46,7 +46,7 @@ jobs:
       - name: Compile_clisp
         run: |
              cd clisp/build
-             make lisp.exe
+             make
              find /home/runneradmin/clisp
              tar -cf /tmp/clisp.tar .
 
