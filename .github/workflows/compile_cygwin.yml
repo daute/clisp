@@ -48,7 +48,8 @@ jobs:
              cd clisp/build
              make lisp.exe
              find /home/runneradmin/clisp
+             C:\\tools\\cygwin\\bin\\bash -l -c 'cd $(cygpath -u "$GITHUB_WORKSPACE") && tar -cf /tmp/clisp.tar clisp'
 
       - uses: actions/upload-artifact@v3
         with:
-          path: ${{ github.workspace }}/clisp/build
+          path: C:\\tools\\cygwin\\tmp\\clisp.tar
