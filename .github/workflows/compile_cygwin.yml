@@ -51,4 +51,4 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          path: /home/runneradmin/clisp/build/
+          path: ${{ github.workspace }}/clisp/build
