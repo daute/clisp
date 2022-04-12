@@ -41,7 +41,7 @@ jobs:
       - name: Configure_clisp
         run: |
              cd clisp
-             ./configure --config --host=i686-w64-mingw32 --with-debug --disable-threads --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv build
+             CFLAGS=-Wl,--stack,16777216 ./configure --config --host=i686-w64-mingw32 --with-debug --disable-threads --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv build
 
       - name: Compile_clisp
         run: |
