@@ -41,11 +41,13 @@ jobs:
       - name: Configure_clisp
         run: |
              cd clisp
-             CFLAGS=-Wl,--stack,8388608 ./configure --config --host=i686-w64-mingw32 --with-debug --disable-threads --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv build
+             ulimit -s 8192
+             ./configure --config --host=i686-w64-mingw32 --with-debug --with-module=rawsock --disable-threads --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv build
 
       - name: Compile_clisp
         run: |
              cd clisp/build
+             ulimit -s 8192
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll .
              make
              find /home/runneradmin/clisp
