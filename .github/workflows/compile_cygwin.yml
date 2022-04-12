@@ -23,7 +23,7 @@ jobs:
       - name: Build_libffcall
         run: |
              cd libffcall-2.4
-             ./configure configure --enable-static --enable-shared=no  --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=$HOME/libffcall
+             ./configure --enable-static --enable-shared=no  --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=$HOME/libffcall
              make
              make install
       - name: Download_libsigsegv
@@ -33,7 +33,7 @@ jobs:
       - name: Build_libsigsegv
         run: |
              cd libsigsegv-2.14
-             ./configure configure --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=$HOME/libsigsegv
+             ./configure --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=$HOME/libsigsegv
              make
              make install
       - name: Checkout_git
@@ -41,14 +41,16 @@ jobs:
       - name: Configure_clisp
         run: |
              cd clisp
-             ulimit -s 8192
              ./configure --config --host=i686-w64-mingw32 --with-debug --with-module=rawsock --disable-threads --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv build
 
       - name: Compile_clisp
         run: |
              cd clisp/build
-             ulimit -s 8192
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll .
+             make lisp.exe
+             peflags --stack-reserve lisp.exe
+             peflags --stack-reserve=0x800000 lisp.exe
+             peflags --stack-reserve lisp.exe
              make
              find /home/runneradmin/clisp
              tar -cf /tmp/clisp.tar .
