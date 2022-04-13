@@ -36,6 +36,16 @@ jobs:
              ./configure --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=$HOME/libsigsegv
              make
              make install
+      - name: Download_libiconv
+        run: curl -O https://ftp.gnu.org/gnu/libiconv/libiconv-1.16.tar.gz
+      - name: Extract_libiconv
+        run: tar xvf libiconv-1.16.tar.gz
+      - name: Build_libiconv
+        run: |
+             cd libiconv-1.16
+             ./configure --build=i686-unknown-cygwin --host=i686-w64-mingw32 --enable-static --enable-shared=no --prefix=$HOME/libiconv
+             make
+             make install
       - name: Checkout_git
         run: git clone --depth 1 https://github.com/daute/clisp.git
       - name: Configure_clisp
