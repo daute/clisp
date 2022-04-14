@@ -245,6 +245,8 @@ with_debug=no
 # regexp: useful for scripting and text processing
 # readline: additional facilities for REPL, added later if appropriate
 BASE_MODULES="i18n syscalls regexp"
+# remove i18n for testing...
+BASE_MODULES="syscalls regexp"
 
 verbose=${CLISP_MAKEMAKE_VERBOSE:-false}
 # Handle --with-... arguments
