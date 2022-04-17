@@ -63,7 +63,7 @@ jobs:
              peflags --stack-reserve lisp.exe
              make boot
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll boot
-             make base
+             make --trace base VERBOSE=1
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll base
              make full
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll full
