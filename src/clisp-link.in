@@ -249,6 +249,8 @@ ${CLISP} --version 2>/dev/null | head -n 1 | grep "GNU CLISP" >/dev/null 2>&1 \
 CLISP_LIBDIR=`${CLISP} -b`
 
 # Where is the link kit?
+# FIXME... That should be determined automatically. (dauti)
+CLISP_LINKKIT="/home/runneradmin/clisp/build/linkkit"
 if [ -n "$CLISP_LINKKIT" ] ; then
   linkkitdir="$CLISP_LINKKIT"
 else
