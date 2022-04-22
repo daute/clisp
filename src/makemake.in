@@ -138,7 +138,9 @@ fi
 link_dep() {
   echol "$1 : $2"
   echotab "-\$(RM) $1"
-  echotab "-\$(LN_S) ${3-$2} $1"
+  # echotab "-\$(LN_S) ${3-$2} $1"
+  # FIXME: Was "ln -s" on cygwin and created error messages like: ln: ../src/build-aux: hard link not allowed for directory
+  echotab "-cp -r ${3-$2} $1"
   echol
 }
 
