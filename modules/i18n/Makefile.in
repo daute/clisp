@@ -21,8 +21,8 @@ distribdir =
 # default target: make the module
 clisp-module : $(GENERATED)
 
-i18n.fas: i18n.lisp
-	$(CLISP) -c i18n.lisp -o ./
+i18n.fas: $(srcdir)/i18n.lisp
+	$(CLISP) -c $(shell realpath --relative-to=$(shell pwd) $<) -o ./
 
 gettext.o : gettext.m.c config.h
 	$(CC) $(CPPFLAGS) $(CFLAGS) -I. -I$(CLISP_LINKKIT) \
