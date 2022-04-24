@@ -31,7 +31,7 @@ posix.fas: $(srcdir)/posix.lisp
 	$(CLISP) -c $(shell realpath --relative-to=$(shell pwd) $<) -o ./
 
 calls.m.c: $(srcdir)/calls.c
-	$(CLISP) -C $(shell realpath --relative-to=$(shell pwd) $(CLISP_LINKKIT)/modprep) $(shell realpath --relative-to=$(shell pwd) $<) ./
+	$(CLISP) -m 2MW -C $(shell realpath --relative-to=$(shell pwd) $(CLISP_LINKKIT)/modprep) $(shell realpath --relative-to=$(shell pwd) $<) ./
 
 calls.o : calls.m.c config.h
 	$(CC) $(CPPFLAGS) $(CFLAGS) -I. -I$(CLISP_LINKKIT) \
