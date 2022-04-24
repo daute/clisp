@@ -26,7 +26,7 @@ clisp-module : $(GENERATED)
 .PHONY : all am--refresh clisp-module clisp-module-distrib clean distclean force
 
 regexp.fas: $(srcdir)/regexp.lisp
-	$(CLISP) -c $(srcdir)/regexp.lisp -o ./
+	$(CLISP) -c $(shell realpath --relative-to=$(shell pwd) $<) -o ./
 
 regexi.o : regexi.m.c config.h
 	$(CC) $(CPPFLAGS) $(CFLAGS) -I. -I$(CLISP_LINKKIT) \
