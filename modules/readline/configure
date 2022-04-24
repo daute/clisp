@@ -2151,6 +2151,9 @@ else $as_nop
   cl_cv_clisp_libdir=`$cl_cv_clisp -q -norc -x '(namestring *lib-directory*)' 2>/dev/null | sed -e 's/^"//' -e 's/"$//'`
            x=$cl_cv_clisp_libdir
            cl_cv_clisp_libdir=`eval $cl_cv_decolonize`
+           # FIXME: wild guess to set linkkitdir without a strange "\n  (dauti)
+           cl_cv_clisp_libdir="/home/runneradmin/clisp/build/"
+
            # cf src/clisp-link.in:linkkitdir
            missing=''
            for f in modules.c clisp.h; do
