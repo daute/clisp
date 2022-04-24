@@ -15,7 +15,7 @@ jobs:
         uses: egor-tensin/setup-cygwin@v3
         with:
           platform: x86
-          packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ mingw64-i686-winpthreads make curl mingw64-i686-openssl
+          packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ mingw64-i686-winpthreads make curl mingw64-i686-crypt
       - name: Download_libffcall
         run: curl -O https://ftp.gnu.org/gnu/libffcall/libffcall-2.4.tar.gz
       - name: Extract_libffcall
@@ -51,7 +51,7 @@ jobs:
       - name: Configure_clisp
         run: |
              cd clisp
-             CFLAGS=-Wl,--stack,8388608 LIBS="/usr/i686-w64-mingw32/sys-root/mingw/lib/libcrypto.a /usr/i686-w64-mingw32/sys-root/mingw/lib/libssl.a" ./configure --config --host=i686-w64-mingw32 --with-debug --disable-threads --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv --with-libiconv-prefix=$HOME/libiconv --with-openssl build
+             CFLAGS=-Wl,--stack,8388608 ./configure --config --host=i686-w64-mingw32 --with-debug --disable-threads --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv --with-libiconv-prefix=$HOME/libiconv build
 
       - name: Compile_clisp
         run: |
