@@ -29,7 +29,7 @@ gettext.o : gettext.m.c config.h
 		-c gettext.m.c -o gettext.o
 
 gettext.m.c : $(srcdir)/gettext.c
-	$(CLISP) -C $(CLISP_LINKKIT)/modprep $(srcdir)/gettext.c ./
+	$(CLISP) -C $(shell realpath --relative-to=$(shell pwd) $(CLISP_LINKKIT)/modprep) $(shell realpath --relative-to=$(shell pwd) $<) ./
 
 preload.lisp : $(srcdir)/preload.lisp
 	$(LN_S) $(srcdir)/preload.lisp .
