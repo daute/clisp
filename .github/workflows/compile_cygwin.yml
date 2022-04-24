@@ -65,8 +65,6 @@ jobs:
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll boot
              make --trace base VERBOSE=1
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll base
-             make full
-             cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll full
              find /home/runneradmin/clisp
              tar -cf /tmp/clisp.tar .
 
