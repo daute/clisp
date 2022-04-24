@@ -2025,6 +2025,9 @@ then :
   printf %s "(cached) " >&6
 else $as_nop
   cl_cv_clisp_linkset=`$cl_cv_clisp -q -norc -x '(sys::program-name)' 2>/dev/null | sed -e 's/^"//' -e 's/"$//'`
+           # FIXME: cl_cv_clisp_linkset is reported as Windows path, use the cygwin path here. For now just use the hardcoded path for Github actions.)
+           cl_cv_clisp_linkset="/home/runneradmin/clisp/build/boot/lisp.exe"
+
            cl_cv_clisp_linkset=`dirname ${cl_cv_clisp_linkset}`
            missing=''
            # cf. src/clisp-link.in:check_linkset (we do not need to check for
