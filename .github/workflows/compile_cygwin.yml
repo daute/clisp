@@ -61,11 +61,10 @@ jobs:
              peflags -v lisp.exe
              peflags --stack-reserve=0x800000 lisp.exe
              peflags -v lisp.exe
-             make -C boot lisp.exe
+             make boot
              peflags -v boot/lisp.exe
              peflags --stack-reserve=0x800000 boot/lisp.exe
              peflags -v boot/lisp.exe
-             make boot
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll boot
              make --trace base VERBOSE=1
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll base
