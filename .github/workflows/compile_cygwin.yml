@@ -66,7 +66,7 @@ jobs:
              peflags --stack-reserve=0x800000 boot/lisp.exe
              peflags -v boot/lisp.exe
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll boot
-             make cisp.exe
+             make clisp.exe
              peflags -v clisp.exe
              peflags --stack-reserve=0x800000 clisp.exe
              peflags -v clisp.exe
