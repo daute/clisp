@@ -51,7 +51,7 @@ jobs:
       - name: Configure_clisp
         run: |
              cd clisp
-             CFLAGS=-Wl,--stack,8388608 LIBS="/usr/lib/w32api/libbcrypt.a" ./configure --config --host=i686-w64-mingw32 --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv --with-libiconv-prefix=$HOME/libiconv build
+             CFLAGS=-Wl,--stack,8388608 LIBS="/usr/lib/w32api/libbcrypt.a" ./configure --config --host=i686-w64-mingw32 --with-debug --disable-threads --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv --with-libiconv-prefix=$HOME/libiconv build
 
       - name: Compile_clisp
         run: |
