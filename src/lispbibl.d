@@ -2644,7 +2644,7 @@ typedef enum {
        STACK_ADDRESS_RANGE  = 0x00000000UL
        Addresses >= 0x80000000UL are not mmapable.
        There is room from 0x03000000UL to 0x57000000UL. */
-    #define MAPPABLE_ADDRESS_RANGE_START 0x04330000UL
+    #define MAPPABLE_ADDRESS_RANGE_START 0x04ca0000UL
     /* FIXME?: The value of MAPPABLE_ADDRESS_RANGE_START was defined as: 0x03000000UL
     but that caused problems like 'Cannot reserve address range 0x3000000-0x300ffff .' when compiling.
     Maybe, because the stack was enlarged using peflags. W. Dautermann */
