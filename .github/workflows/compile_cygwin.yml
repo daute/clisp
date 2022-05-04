@@ -51,24 +51,25 @@ jobs:
       - name: Configure_clisp
         run: |
              cd clisp
-             CFLAGS=-Wl,--stack,83886080 LIBS="/usr/lib/w32api/libbcrypt.a" ./configure --config --host=i686-w64-mingw32 --with-debug --disable-threads --enable-compatibility --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv --with-libiconv-prefix=$HOME/libiconv build
+             CFLAGS=-Wl,--stack,16777216 LIBS="/usr/lib/w32api/libbcrypt.a" ./configure --config --host=i686-w64-mingw32 --with-debug --disable-threads --enable-compatibility --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv --with-libiconv-prefix=$HOME/libiconv build
 
       - name: Compile_clisp
         run: |
+             ulimit -a
              cd clisp/build
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll .
              make lisp.exe
              peflags -v lisp.exe
-             peflags --stack-reserve=0x8000000 lisp.exe
+             peflags --stack-reserve=16777216 lisp.exe
              peflags -v lisp.exe
              make boot
              peflags -v boot/lisp.exe
-             peflags --stack-reserve=0x8000000 boot/lisp.exe
+             peflags --stack-reserve=16777216 boot/lisp.exe
              peflags -v boot/lisp.exe
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll boot
              make clisp.exe
              peflags -v clisp.exe
-             peflags --stack-reserve=0x8000000 clisp.exe
+             peflags --stack-reserve=16777216 clisp.exe
              peflags -v clisp.exe
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll base
              make VERBOSE=1
