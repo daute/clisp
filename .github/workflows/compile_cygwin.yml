@@ -55,6 +55,9 @@ jobs:
 
       - name: Compile_clisp
         run: |
+             ulimit -a
+             ulimit -s 8192
+             ulimit -a
              cd clisp/build
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll .
              make lisp.exe
