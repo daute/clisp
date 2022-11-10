@@ -17,7 +17,7 @@ jobs:
           platform: x86
           packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ mingw64-i686-winpthreads make curl mingw64-i686-crypt w32api-runtime w32api-headers
       - name: Download_libffcall
-        run: curl -O https://ftp.gnu.org/gnu/libffcall/libffcall-2.4.tar.gz
+        run: C:\msys64\usr\bin\wget.exe https://ftp.gnu.org/gnu/libffcall/libffcall-2.4.tar.gz
       - name: Extract_libffcall
         run: tar xvf libffcall-2.4.tar.gz
       - name: Build_libffcall
@@ -27,7 +27,7 @@ jobs:
              make
              make install
       - name: Download_libsigsegv
-        run: curl -O https://ftp.gnu.org/gnu/libsigsegv/libsigsegv-2.14.tar.gz
+        run: C:\msys64\usr\bin\wget.exe https://ftp.gnu.org/gnu/libsigsegv/libsigsegv-2.14.tar.gz
       - name: Extract_libffcall
         run: tar xvf libsigsegv-2.14.tar.gz
       - name: Build_libsigsegv
@@ -37,7 +37,7 @@ jobs:
              make
              make install
       - name: Download_libiconv
-        run: curl -O https://ftp.gnu.org/gnu/libiconv/libiconv-1.16.tar.gz
+        run: C:\msys64\usr\bin\wget.exe https://ftp.gnu.org/gnu/libiconv/libiconv-1.16.tar.gz
       - name: Extract_libiconv
         run: tar xvf libiconv-1.16.tar.gz
       - name: Build_libiconv
