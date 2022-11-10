@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: setup_cygwin
-        uses: egor-tensin/setup-cygwin@v3
+        uses: cygwin/cygwin-install-action@v2
         with:
           platform: x86
           packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ mingw64-i686-winpthreads make curl mingw64-i686-crypt w32api-runtime w32api-headers
