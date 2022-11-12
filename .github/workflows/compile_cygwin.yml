@@ -19,7 +19,7 @@ jobs:
       - name: Build_libffcall
         run: |
              cd libffcall-2.4
-             bash ./configure --enable-static --enable-shared=no  --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=$HOME/libffcall
+             bash ./configure --enable-static --enable-shared=no  --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=/home/runneradmin/libffcall
              make
              make install
       - name: Download_libsigsegv
@@ -29,7 +29,7 @@ jobs:
       - name: Build_libsigsegv
         run: |
              cd libsigsegv-2.14
-             ./configure --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=$HOME/libsigsegv
+             bash ./configure --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=/home/runneradmin/libsigsegv
              make
              make install
       - name: Download_libiconv
@@ -39,7 +39,7 @@ jobs:
       - name: Build_libiconv
         run: |
              cd libiconv-1.16
-             ./configure --build=i686-unknown-cygwin --host=i686-w64-mingw32 --enable-static --enable-shared=no --prefix=$HOME/libiconv
+             bash ./configure --build=i686-unknown-cygwin --host=i686-w64-mingw32 --enable-static --enable-shared=no --prefix=/home/runneradmin/libiconv
              make
              make install
       - name: Checkout_git
@@ -47,7 +47,7 @@ jobs:
       - name: Configure_clisp
         run: |
              cd clisp
-             CFLAGS=-Wl,--stack,8388608 LIBS="/usr/lib/w32api/libbcrypt.a" ./configure --config --host=i686-w64-mingw32 --with-debug --disable-threads --enable-compatibility --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=$HOME/libsigsegv --with-libiconv-prefix=$HOME/libiconv build
+             CFLAGS=-Wl,--stack,8388608 LIBS="/usr/lib/w32api/libbcrypt.a" bash ./configure --config --host=i686-w64-mingw32 --with-debug --disable-threads --enable-compatibility --with-libffcall-prefix=$HOME/libffcall --with-libsigsegv-prefix=/home/runneradmin/libsigsegv --with-libiconv-prefix=/home/runneradmin/libiconv build
 
       - name: Compile_clisp
         run: |
