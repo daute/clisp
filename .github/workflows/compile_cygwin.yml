@@ -11,7 +11,7 @@ jobs:
       - name: setup_cygwin
         uses: cygwin/cygwin-install-action@v2
         with:
-          packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ mingw64-i686-winpthreads make curl mingw64-i686-crypt w32api-runtime w32api-headers
+          packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ mingw64-i686-winpthreads make curl mingw64-i686-crypt w32api-runtime w32api-headers wget
       - name: Download_libffcall
         run: wget https://ftp.gnu.org/gnu/libffcall/libffcall-2.4.tar.gz
       - name: Extract_libffcall
