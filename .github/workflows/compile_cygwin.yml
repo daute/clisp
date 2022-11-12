@@ -8,7 +8,7 @@ jobs:
     runs-on: windows-latest
     defaults:
       run:
-        shell: C:/msys64/usr/bin/bash.exe --login --norc -eo pipefail -o igncr '{0}'
+        shell: shell: C:\cygwin\bin\bash.exe --noprofile --norc -o igncr -eo pipefail '{0}'
 
     steps:
       - name: setup_cygwin
@@ -17,7 +17,7 @@ jobs:
           platform: x86
           packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ mingw64-i686-winpthreads make curl mingw64-i686-crypt w32api-runtime w32api-headers
       - name: Download_libffcall
-        run: C:/msys64/usr/bin/wget.exe https://ftp.gnu.org/gnu/libffcall/libffcall-2.4.tar.gz
+        run: wget https://ftp.gnu.org/gnu/libffcall/libffcall-2.4.tar.gz
       - name: Extract_libffcall
         run: tar xvf libffcall-2.4.tar.gz
       - name: Build_libffcall
