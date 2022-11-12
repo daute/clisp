@@ -19,7 +19,7 @@ jobs:
       - name: Build_libffcall
         run: |
              cd libffcall-2.4
-             ./configure --enable-static --enable-shared=no  --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=$HOME/libffcall
+             bash ./configure --enable-static --enable-shared=no  --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=$HOME/libffcall
              make
              make install
       - name: Download_libsigsegv
