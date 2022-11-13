@@ -51,9 +51,6 @@ jobs:
 
       - name: Compile_clisp
         run: |
-             ulimit -a
-             ulimit -s 8192
-             ulimit -a
              cd clisp/build
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll .
              make lisp.exe
@@ -72,8 +69,8 @@ jobs:
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll base
              make VERBOSE=1
              find /home/runneradmin/clisp
-             tar -cf /tmp/clisp.tar .
+             tar -cvf /home/runneradmin/clisp.tar.gz /home/runneradmin/clisp
 
       - uses: actions/upload-artifact@v3
         with:
-          path: C:\\tools\\cygwin\\tmp\\clisp.tar
+          path: /home/runneradmin/clisp.tar.gz
