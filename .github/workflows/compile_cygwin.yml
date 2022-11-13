@@ -1,4 +1,3 @@
-# Set up Cygwin. Source: https://github.com/egor-tensin/setup-cygwin
 name: compile_cygwin
 
 on: [push]
@@ -52,7 +51,6 @@ jobs:
       - name: Compile_clisp
         run: |
              cd clisp/build
-             cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll .
              make lisp.exe
              peflags -v lisp.exe
              peflags --stack-reserve=0x800000 lisp.exe
@@ -61,12 +59,10 @@ jobs:
              peflags -v boot/lisp.exe
              peflags --stack-reserve=0x800000 boot/lisp.exe
              peflags -v boot/lisp.exe
-             cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll boot
              make clisp.exe
              peflags -v clisp.exe
              peflags --stack-reserve=0x800000 clisp.exe
              peflags -v clisp.exe
-             cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll base
              make VERBOSE=1
              find /home/runneradmin/clisp
              tar -cvzf /home/runneradmin/clisp.tar.gz /home/runneradmin/clisp
