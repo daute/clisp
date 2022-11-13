@@ -69,7 +69,7 @@ jobs:
              cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll base
              make VERBOSE=1
              find /home/runneradmin/clisp
-             tar -cvf /home/runneradmin/clisp.tar.gz /home/runneradmin/clisp
+             tar -cvzf /home/runneradmin/clisp.tar.gz /home/runneradmin/clisp
 
       - uses: actions/upload-artifact@v3
         with:
