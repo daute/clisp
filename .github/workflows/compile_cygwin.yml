@@ -32,12 +32,12 @@ jobs:
              make
              make install
       - name: Download_libiconv
-        run: wget https://ftp.gnu.org/gnu/libiconv/libiconv-1.16.tar.gz
+        run: wget https://ftp.gnu.org/gnu/libiconv/libiconv-1.17.tar.gz
       - name: Extract_libiconv
-        run: tar xvf libiconv-1.16.tar.gz
+        run: tar xvf libiconv-1.17.tar.gz
       - name: Build_libiconv
         run: |
-             cd libiconv-1.16
+             cd libiconv-1.17
              bash ./configure --build=i686-unknown-cygwin --host=i686-w64-mingw32 --enable-static --enable-shared=no --prefix=/home/runneradmin/libiconv
              make
              make install
