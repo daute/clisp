@@ -52,17 +52,17 @@ jobs:
         run: |
              cd clisp/build
              make lisp.exe
-             peflags -v lisp.exe
+             peflags --stack-reserve lisp.exe
              peflags --stack-reserve=0x800000 lisp.exe
-             peflags -v lisp.exe
+             peflags --stack-reserve lisp.exe
              make boot
-             peflags -v boot/lisp.exe
+             peflags --stack-reserve boot/lisp.exe
              peflags --stack-reserve=0x800000 boot/lisp.exe
-             peflags -v boot/lisp.exe
+             peflags --stack-reserve boot/lisp.exe
              make clisp.exe
-             peflags -v clisp.exe
+             peflags --stack-reserve clisp.exe
              peflags --stack-reserve=0x800000 clisp.exe
-             peflags -v clisp.exe
+             peflags --stack-reserve clisp.exe
              make VERBOSE=1
              find /home/runneradmin/clisp
              tar -cvzf /home/runneradmin/clisp.tar.gz /home/runneradmin/clisp
