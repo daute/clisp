@@ -55,14 +55,6 @@ jobs:
              peflags --stack-reserve lisp.exe
              peflags --stack-reserve=0x800000 lisp.exe
              peflags --stack-reserve lisp.exe
-             make boot
-             peflags --stack-reserve boot/lisp.exe
-             peflags --stack-reserve=0x800000 boot/lisp.exe
-             peflags --stack-reserve boot/lisp.exe
-             make clisp.exe
-             peflags --stack-reserve clisp.exe
-             peflags --stack-reserve=0x800000 clisp.exe
-             peflags --stack-reserve clisp.exe
              make VERBOSE=1
              find /home/runneradmin/clisp
              tar -cvzf /home/runneradmin/clisp.tar.gz /home/runneradmin/clisp
