@@ -1,4 +1,4 @@
-name: compile_cygwin
+name: compile_cygwin32
 
 on: [push]
 
