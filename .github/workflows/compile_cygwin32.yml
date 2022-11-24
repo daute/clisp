@@ -1,0 +1,65 @@
+name: compile_cygwin
+
+on: [push]
+
+jobs:
+  setup_cygwin:
+    runs-on: windows-latest
+
+    steps:
+      - name: setup_cygwin
+        platform: x86
+        uses: cygwin/cygwin-install-action@v2
+        with:
+          packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ mingw64-i686-winpthreads make curl mingw64-i686-crypt w32api-runtime w32api-headers wget
+      - name: Download_libffcall
+        run: wget https://ftp.gnu.org/gnu/libffcall/libffcall-2.4.tar.gz
+      - name: Extract_libffcall
+        run: tar xvf libffcall-2.4.tar.gz
+      - name: Build_libffcall
+        run: |
+             cd libffcall-2.4
+             bash ./configure --enable-static --enable-shared=no  --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=/home/runneradmin/libffcall
+             make
+             make install
+      - name: Download_libsigsegv
+        run: wget https://ftp.gnu.org/gnu/libsigsegv/libsigsegv-2.14.tar.gz
+      - name: Extract_libffcall
+        run: tar xvf libsigsegv-2.14.tar.gz
+      - name: Build_libsigsegv
+        run: |
+             cd libsigsegv-2.14
+             bash ./configure --build=i686-unknown-cygwin --host=i686-w64-mingw32 --prefix=/home/runneradmin/libsigsegv
+             make
+             make install
+      - name: Download_libiconv
+        run: wget https://ftp.gnu.org/gnu/libiconv/libiconv-1.17.tar.gz
+      - name: Extract_libiconv
+        run: tar xvf libiconv-1.17.tar.gz
+      - name: Build_libiconv
+        run: |
+             cd libiconv-1.17
+             bash ./configure --build=i686-unknown-cygwin --host=i686-w64-mingw32 --enable-static --enable-shared=no --prefix=/home/runneradmin/libiconv
+             make
+             make install
+      - name: Checkout_git
+        run: git clone --depth 1 https://github.com/daute/clisp.git
+      - name: Configure_clisp
+        run: |
+             cd clisp
+             bash ./configure --config --host=i686-w64-mingw32 --with-debug --disable-threads --enable-compatibility --with-libffcall-prefix=/home/runneradmin/libffcall --with-libsigsegv-prefix=/home/runneradmin/libsigsegv --with-libiconv-prefix=/home/runneradmin/libiconv build
+
+      - name: Compile_clisp
+        run: |
+             cd clisp/build
+             make lisp.exe
+             peflags --stack-reserve lisp.exe
+             peflags --stack-reserve=0x800000 lisp.exe
+             peflags --stack-reserve lisp.exe
+             make VERBOSE=1
+             find /home/runneradmin
+             tar -cvzf /tmp/clisp.tar.gz /home/runneradmin
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: /tmp/clisp.tar.gz
