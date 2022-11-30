@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: setup_cygwin
-        uses: cygwin/cygwin-install-action@v2
+        uses: cygwin/cygwin-install-action@v3
         with:
           packages: git mingw64-i686-gcc-core mingw64-i686-gcc-g++ mingw64-i686-winpthreads make curl mingw64-i686-crypt w32api-runtime w32api-headers wget
       - name: Download_libffcall
@@ -56,9 +56,9 @@ jobs:
              peflags --stack-reserve=0x800000 lisp.exe
              peflags --stack-reserve lisp.exe
              make -n VERBOSE=1
-             find /home/runneradmin/clisp
-             tar -cvzf /home/runneradmin/clisp.tar.gz /home/runneradmin/clisp
+             find /home/runneradmin
+             tar -cvzf /tmp/clisp.tar.gz /home/runneradmin
 
       - uses: actions/upload-artifact@v3
         with:
-          path: /home/runneradmin/clisp.tar.gz
+          path: /tmp/clisp.tar.gz
